@@ -1,0 +1,55 @@
+<div>
+    <div class="search-results" style=" overflow-y: scroll;" infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()" [scrollWindow]="false">
+        <div *ngIf='dashboardData !== undefined &&  dashboardData.length > 0; else errorData'>
+            <table class="table table-sortable">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Purchased On Date
+                        <span class="sortAsc" (click)='sortData("purchased_on", "increase", $event)'></span>
+                        <span class="sortDes" (click)='sortData("purchased_on", "decrease", $event)'></span>
+                    </th>
+                    <th>
+                        Price
+                        <span class="sortAsc" (click)='sortData("price", "increase", $event)'></span>
+                        <span class="sortDes" (click)='sortData("price", "decrease", $event)'></span>
+                    </th>
+                    <th>
+                        Quantity
+                        <span class="sortAsc" (click)='sortData("quantity", "increase", $event)'></span>
+                        <span class="sortDes" (click)='sortData("quantity", "decrease", $event)'></span>
+                    </th>
+                    <th>
+                        Request Raised By
+                        <span class="sortAsc" (click)='sortData("request_raised_by", "increase", $event)'></span>
+                        <span class="sortDes" (click)='sortData("request_raised_by", "decrease", $event)'></span>
+                    </th>
+                    <th>
+                        Request Raised On
+                        <span class="sortAsc" (click)='sortData("request_raised_on", "increase", $event)'></span>
+                        <span class="sortDes" (click)='sortData("request_raised_on", "decrease", $event)'></span>
+                    </th>
+                    <th>
+                        Description
+                        <span class="sortAsc" (click)='sortData("description", "increase", $event)'></span>
+                        <span class="sortDes" (click)='sortData("description", "decrease", $event)'></span>
+                    </th>
+                </tr>
+                <tr *ngFor='let data of displayData' style="margin-top: 35px;">
+                    <td>{{data.ID}}</td>
+                    <td>{{data.purchased_on.toDateString()}}</td>
+                    <td>{{data.price}}</td>
+                    <td>{{data.quantity}}</td>
+                    <td>{{data.request_raised_by}}</td>
+                    <td>{{data.request_raised_on.toDateString()}}</td>
+                    <td>{{data.description}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<ng-template #errorData>
+    <div class="error-message">No data found</div>
+</ng-template>

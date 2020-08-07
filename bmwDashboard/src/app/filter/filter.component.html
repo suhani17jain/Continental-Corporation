@@ -1,0 +1,85 @@
+<h1 class="header">BMW Dashboard</h1>
+<div class="grid-container">
+    <div class="grid-item">
+        <div class="grid-container-three-col">
+            <div class="grid-item"><label class="title">Purchased On:</label></div>
+            <div class="grid-item">
+                <mat-form-field class="date-box">
+                    <input matInput [matDatepicker]="purchaseStartDate" [(ngModel)]="obj.purchased_on.start" placeholder="Start date" [min]="obj.purchased_on.start" [max]="obj.purchased_on.end">
+                    <mat-datepicker-toggle matSuffix [for]="purchaseStartDate"></mat-datepicker-toggle>
+                    <mat-datepicker #purchaseStartDate></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="grid-item">
+                <mat-form-field class="date-box">
+                    <input matInput [matDatepicker]="purchaseEndDate" [(ngModel)]="obj.purchased_on.end" placeholder="End date" [min]="obj.purchased_on.start" [max]="obj.purchased_on.end">
+                    <mat-datepicker-toggle matSuffix [for]="purchaseEndDate"></mat-datepicker-toggle>
+                    <mat-datepicker #purchaseEndDate></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="grid-container-three-col">
+            <div class="grid-item"><label class="title">Raised On:</label></div>
+            <div class="grid-item">
+                <mat-form-field class="date-box">
+                    <input matInput [matDatepicker]="raisedOnStartDate" [(ngModel)]="obj.request_raised_on.start" placeholder="Start date" [min]="obj.request_raised_on.start" [max]="obj.request_raised_on.end">
+                    <mat-datepicker-toggle matSuffix [for]="raisedOnStartDate"></mat-datepicker-toggle>
+                    <mat-datepicker #raisedOnStartDate></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="grid-item">
+                <mat-form-field class="date-box">
+                    <input matInput [matDatepicker]="raisedOnEndDate" [(ngModel)]="obj.request_raised_on.end" placeholder="End date" [min]="obj.request_raised_on.start" [max]="obj.request_raised_on.end">
+                    <mat-datepicker-toggle matSuffix [for]="raisedOnEndDate"></mat-datepicker-toggle>
+                    <mat-datepicker #raisedOnEndDate></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="grid-item-col-two">
+            <div class="grid-item"><label class="title">Price:</label></div>
+            <div class=" grid-item">
+                <ng5-slider [(value)]="obj.price.low" [(highValue)]="obj.price.high" [options]="priceRangeOptions" class="range-slider"></ng5-slider>
+            </div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="grid-item-col-two">
+            <div class="grid-item"> <label class="title">Quantity:</label></div>
+            <div class="grid-item">
+                <ng5-slider [(value)]="obj.quantity" [options]="quantityRangeOptions" class="range-slider"></ng5-slider>
+            </div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="grid-item-col-two">
+            <div class="grid-item">
+                <label class="title">Raised By:</label>
+            </div>
+            <div class="grid-item">
+                <mat-form-field appearance="fill">
+                    <mat-select [(ngModel)]="obj.request_raised_by">
+                        <mat-option [value]="''">None</mat-option>
+                        <mat-option *ngFor="let user of raisedByUsers" [value]="user">
+                            {{user}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="grid-item-col-two">
+            <div class="grid-item">
+                <label class="title">Description:</label>
+            </div>
+            <div class="grid-item">
+                <input placeholder="description" matInput [(ngModel)]='obj.description' class="descriptionInput">
+            </div>
+        </div>
+    </div>
+</div>
+<button (click)='submitFilterParam()' mat-button class="submitButton">Submit</button>
